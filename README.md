@@ -25,7 +25,7 @@ bottom left|bottom | bottom right
 
 From a middle image stitches all 8 surrounding tiles in their relevant positions and returns this stitched image
 
-Current middle image is: "1855779_1265826.jpg". Change the file_name variable to modify this.
+Current middle image is: "1855779_1265826.jpg". Open image_stitcher.py and change the file_name variable to modify this.
 
 Handles corner images and side images. Will return as many surrounding tiles as necessary (either 4 tiles or 6 tiles for edgecases)
 
