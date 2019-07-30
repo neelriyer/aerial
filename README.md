@@ -15,12 +15,12 @@ for google tiles cooridinates between:
 Image_stitcher.py is a python script to stitch images together.
 
     Grid:
-    -----------------------
-   top left|top    | top right
+    ----------------------
+    top left|top    | top right
     -------|-------|-------
     left   | middle| right
     -------|-------|-------
-bottom left|bottom | bottom right
+    bottom left|bottom | bottom right
     -------|-------|-------
 
 From a middle image stitches all 8 surrounding tiles in their relevant positions and returns this stitched image
