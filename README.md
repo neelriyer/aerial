@@ -33,6 +33,7 @@ Handles corner images and side images. Will return as many surrounding tiles as 
 # image_scraper.py
 
 image_scraper.py is a small python script to scrape images from nearmap
+
 api call: "https://api.nearmap.com/tiles/v3/Vert/21/"+str(x)+"/"+str(y)+".jpg?apikey=ODI0M2IxNzEtMmJhMy00NGRkLWEzMTItYTE0ZDk1ZGFmMmI5"
 
 images saved in the Dataset folder
