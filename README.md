@@ -21,7 +21,7 @@ Tiles saved in New_tiles folder. File name is 'New_tile/x/y/x_y_offset(offsetx, 
 
 Example of how it works. The following is a stitched image with dimensions 768x768.
 
-(0,768) -----------------------------(768,768)
+	(0,768) ------------------------------------------------(768,768)
 	    |							|
 	    |							|
 	    |							|
@@ -32,12 +32,12 @@ Example of how it works. The following is a stitched image with dimensions 768x7
 	    |							|
 	    |							|
 	    |							|
-	    |------------				|
+	    |---------------------				|
 	    |	  |		| 				|
-	    | img1|img2 |				|
-	    |	  |		|		    	|
-	    -----------------------------
-	   (0,0) (16,0)	(32,0)		    (768,0)
+	    | img1|	img2    |				|
+	    |	  |		|		    	        |
+	    -----------------------------------------------------
+	   (0,0) (16,0)	     (32,0)		   	     (768,0)
 
 starts at (0,0) and creates a 256x256 image (img1)
 
