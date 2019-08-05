@@ -16,6 +16,8 @@ Script to create 51,511,296 new tiles. Takes in all stitched tiles and creates 1
 
 Works out to ~51 Million created tiles in total. 
 
+Tiles saved in New_tiles folder. File name is 'New_tile/x/y/x_y_offset(offsetx, offsety) where x and y are tile coordinates and offsetx and offsety are the offsets for both x and y.
+
 
 Example of how it works. The following is a stitched image with dimensions 768x768.
 
