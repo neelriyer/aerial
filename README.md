@@ -10,6 +10,47 @@ for google tiles cooridinates between:
 1855744<=x<=1855999
 1265792<=y<=1265983
 
+# image_newtiler.py
+
+Script to create 51,511,296 new tiles. Takes in all stitched tiles and creates 1048 tiles for each stitched tile. 
+
+Works out to ~51 Million created tiles in total. 
+
+
+Example of how it works. The following is a stitched image with dimensions 768x768.
+
+(0,768) -----------------------------(768,768)
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |							|
+	    |------------				|
+	    |	  |		| 				|
+	    | img1|img2 |				|
+	    |	  |		|		    	|
+	    -----------------------------
+	   (0,0) (16,0)	(32,0)		    (768,0)
+
+starts at (0,0) and creates a 256x256 image (img1)
+
+Then moves to (16,0) and creates another 256x256 image (img2)
+
+So on and so forth
+
+
+
+In reality there is a large degree of overlap between img1 and img2
+
+Handles edgecases where the image size is different (on corners and edges)
+
+
+
 # image_stitcher.py
 
 Image_stitcher.py is a python script to stitch images together.
