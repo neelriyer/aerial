@@ -42,6 +42,11 @@ Handles edgecases where the image size is different (on corners and edges)
 """
 import os
 import cv2
+import sys
+
+
+#CHANGE THIS TO CHANGE THE OFFSET
+offset_paramter = 16
 
 #function to create directory
 def create_directory(directory_name):
@@ -64,15 +69,20 @@ def crop_image(img, tile_x, tile_y):
 	#get height, width and channels of image
 	height, width, channels = img.shape
 
-	for x in range(0, width, 16):		
+	for x in range(0, width, offset_paramter):		
 
-		for y in range(0, height, 16):
+		for y in range(0, height, offset_paramter):
 
+			#accounts for edgecases
 			if((y+h)<= height and (x+w)<=width):
+
+				#crop image
 				crop_img = img[y:y+h, x:x+w]
 
 				#{original x, y}_offset(x, y)
+				
 				file_name = os.getcwd() + "/New_tiles/" + str(tile_x)+ "/" + str(tile_y) + "/" + str(tile_x) + "_" + str(tile_y) + "_" + "offset(" + str(x) + "," + str(y) + ")" + ".jpg"
+				
 				#print(file_name)
 				cv2.imwrite(file_name, crop_img)
 
@@ -90,9 +100,13 @@ def data_calculations():
 
 	images_created = length * width * 1048
 
+	#approximately 3 seconds for each stitched image
+	time_estimate =  length * width * 3
+
 	print("{} images will be created\n".format(images_created))
+
 	print("images stored in 'New_tiles/x/y', where x and y are the tile coordinates of the stiched tile\n")
-	#print("estimated completion time is: {}", )
+	print("estimated completion time: {} hours".format(time_estimate/(60*60)))
 
 
 #create dataset directory
@@ -103,14 +117,24 @@ data_calculations()
 
 
 #iterate through all tiles
-for tile_x in range(1855744, (1855744)+10):
 
-	for tile_y in range(1265792, (1265792)+10):
+start_x =1855744
+end_x = 1855999
+
+start_y = 1265792
+end_y = 1265983
+
+for tile_x in range(start_x, (end_x)+1):
+
+	for tile_y in range(start_y, (end_y)+1):
 
 		#create x_folder directory
 		create_directory('New_tiles/'+ str(tile_x) + "/" + str(tile_y))
 
-		#read image
+		if(not os.path.isdir(os.getcwd()+'/stitched')):
+			sys.exit('error: /stitched directory not found\nRun image_stitcher.py first')
+
+		#read image (from stitched directory)
 		img = cv2.imread(os.getcwd()+"/stitched/"+str(tile_x)+"/"+str(tile_x)+"_"+str(tile_y)+".jpg")
 
 		crop_image(img, tile_x, tile_y)

@@ -50,7 +50,7 @@ print("estimated completion time is: {} hours\n".format(estimated_completion(0.2
 
 
 #create dataset directory
-#create_directory('Dataset')
+create_directory('Dataset')
 
 #completion time
 

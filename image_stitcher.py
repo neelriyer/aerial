@@ -3,11 +3,7 @@ import os
 import cv2
 import numpy as np
 import shutil
-
-
-#CHANGE THIS FOR ACCESSING DIFFERENT TILES
-file_name = "1855744_1265983.jpg"
-
+import sys
 
 """
 Script to stitch images together:
@@ -53,7 +49,6 @@ bottom left|bottom | bottom right
     -------|-------|-------
 
     """
-
     #open all images
     images = [None] * len(adjacent_images)
 
@@ -95,21 +90,21 @@ bottom left|bottom | bottom right
     try:
         final = np.concatenate((final, top_layer), axis=0)
     except:
-        print('No top layer')
+        #print('No top layer')
         pass
 
     #if bottom layer exists merge with final layer
     try:
         final = np.concatenate((bottom_layer, final), axis=0)
     except:
-        print('No bottom layer')
+        #print('No bottom layer')
         pass
 
 
-    #store as center
-    file_name = os.getcwd()+'/stitched/'+str(centre[0]) + '_' + str(centre[1])+'.jpg'
+    #store as centre
+    file_name = os.getcwd()+'/stitched/'+str(centre[0])+'/'+str(centre[0]) + '_' + str(centre[1])+'.jpg'
     cv2.imwrite(file_name, final)
-    print('\n'+str(centre[0]) + '_' + str(centre[1])+'.jpg saved to ' + str(os.getcwd()+'/stitched'))
+    #print(str(centre[0]) + '_' + str(centre[1])+'.jpg saved to ' + str(os.getcwd()+'/stitched'))
 
 
 def merge_layers_horizontally(left, right, middle, file_name):
@@ -128,20 +123,20 @@ def merge_layers_horizontally(left, right, middle, file_name):
     if(left and right):
         layer = np.concatenate((left, middle), axis=1)
         layer = np.concatenate((layer, right), axis=1)
-        cv2.imwrite(str(file_name)+'.jpg', layer)
-        print('\n'+str(file_name)+'.jpg saved to ' + str(os.getcwd()))
+        #cv2.imwrite(str(file_name)+'.jpg', layer)
+        #print('\n'+str(file_name)+'.jpg saved to ' + str(os.getcwd()))
 
     #if only right exists
     elif(right and not left):
         layer = np.concatenate((middle, right), axis=1)
-        cv2.imwrite(str(file_name)+'.jpg', layer)
-        print('\n'+str(file_name)+'.jpg saved to ' + str(os.getcwd()))
+        #cv2.imwrite(str(file_name)+'.jpg', layer)
+        #print('\n'+str(file_name)+'.jpg saved to ' + str(os.getcwd()))
 
     #if only left exists
     elif(left and not right):
         layer = np.concatenate((left, middle), axis=1)
-        cv2.imwrite(str(file_name)+'.jpg', layer)
-        print('\n'+str(file_name)+'.jpg saved to ' + str(os.getcwd()))
+        #cv2.imwrite(str(file_name)+'.jpg', layer)
+        #print('\n'+str(file_name)+'.jpg saved to ' + str(os.getcwd()))
 
     return layer
     
@@ -254,36 +249,61 @@ def create_directory(directory_name):
         pass
 
 
+def driver_function(file_name):
+
+    """
+    main driver function to run program
+    """
+
+    target_image = os.path.splitext(file_name)[0]
+
+    #store centre image
+    centre = target_image.split('_', 2)
+
+    #convert to int
+    centre[0] = int(centre[0])
+    centre[1] = int(centre[1])
+
+    #early exit
+    if(not 1855744<=centre[0]<=1855999):
+        raise Exception('x must be between [1855744, 1855999]. The value of x was: {}'.format(centre[0]))
+
+
+    if(not 1265792<=centre[1]<=1265983):
+        raise Exception('y must be between [1265792, 1265983]. The value of y was: {}'.format(centre[1]))
+
+
+    #find all adjancent images to target image
+    images = find_adjacent_images(target_image)
+
+    #add path name to each image for easy access
+    images_replaced = tuple_replace(images)
+
+    #stitch images
+    merge_images(centre,images_replaced)
+
+
+#Dataset not found
+if(not os.path.isdir(os.getcwd()+'/Dataset')):
+    sys.exit('error: /Dataset directory not found\nRun image_scraper.py first')
+
 
 #create directory for stitched images
 create_directory('stitched')
 
+#download all images in range
+for x in range(1855744, (1855999)+1):
 
-target_image = os.path.splitext(file_name)[0]
+    #create x_folder directory
+    create_directory('stitched/'+ str(x))
 
-#store centre image
-centre = target_image.split('_', 2)
+    for y in range(1265792, (1265983)+1):
 
-#convert to int
-centre[0] = int(centre[0])
-centre[1] = int(centre[1])
+        file_name = str(x) + '_' + str(y) + '.jpg'
 
-#early exit
-if(not 1855744<=centre[0]<=1855999):
-    raise Exception('x must be between [1855744, 1855999]. The value of x was: {}'.format(centre[0]))
+        driver_function(file_name)
 
 
-if(not 1265792<=centre[1]<=1265983):
-    raise Exception('y must be between [1265792, 1265983]. The value of y was: {}'.format(centre[1]))
 
 
-#find all adjancent images to target image
-images = find_adjacent_images(target_image)
-
-#add path name to each image for easy access
-images_replaced = tuple_replace(images)
-
-
-#stitch images
-merge_images(centre,images_replaced)
 
