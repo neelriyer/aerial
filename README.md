@@ -1,3 +1,39 @@
+# Datasets
+
+1. Dataset
+
+- 49152 aerial images of a region in Adelaide. 
+- Images are 256x256 and are stored in the dataset folder.
+- images saved as x/x_y.jpg, where x and y are google tile coordinates 
+
+- for google tiles cooridinates between: 1855744<=x<=1855999 and 1265792<=y<=1265983
+
+2. Stitched
+
+- Dataset of stitched tiles
+- takes input from the Dataset folder
+- Uses image_stitcher.py
+
+3. New_tiles
+
+- Dataset of offset tiles
+- Uses image_newtiler.py to run
+
+4. Labelled_images
+
+- JSON payload of labelled images
+- images labelled into 3 classes: driveways, edge_of_road, offstreet_parking_bays
+
+5. processed_JSON
+
+- converted JSON payload from labelled_images dataset into .txt file
+- .txt file contains:
+	- classification of image (0 = driveway, 1 = curb, 2 = off street parking bay)
+	- x pixel coordinate of driveway/curb/offstreet parking bay
+	- y pixel coordinate of driveway/curb/offstreet parking bay
+	- theta (angle between line designating object and horizontal)
+-.txt named after google tile that it refers to the image location
+
 # image_newtiler.py
 
 Script to create 51,511,296 new tiles. Takes in all stitched tiles and creates 1048 tiles for each stitched tile. 
@@ -70,23 +106,3 @@ api call: "https://api.nearmap.com/tiles/v3/Vert/21/"+str(x)+"/"+str(y)+".jpg?ap
 images saved in the Dataset folder
 
 
-# Datasets
-
-1. Dataset
-
-- 49152 aerial images of a region in Adelaide. 
-- Images are 256x256 and are stored in the dataset folder.
-- images saved as x/x_y.jpg, where x and y are google tile coordinates 
-
-- for google tiles cooridinates between: 1855744<=x<=1855999 and 1265792<=y<=1265983
-
-2. Stitched
-
-- Dataset of stitched tiles
-- takes input from the Dataset folder
-- Uses image_stitcher.py
-
-3. New_tiles
-
-- Dataset of offset tiles
-- Uses image_newtiler.py to run
