@@ -33,6 +33,7 @@
 	- y pixel coordinate of driveway/curb/offstreet parking bay
 	- theta (angle between line designating object and horizontal)
 -.txt named after google tile that it refers to the image location
+- [see example here](https://github.com/pyggteam/aerials/blob/master/processed_JSON/1855744/1855744_1265792.csv)
 
 # image_newtiler.py
 
