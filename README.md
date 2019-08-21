@@ -13,16 +13,20 @@
 - Dataset of stitched tiles
 - takes input from the Dataset folder
 - Uses image_stitcher.py
+- 
 
 3. New_tiles
 
 - Dataset of offset tiles
 - Uses image_newtiler.py to run
+- [see example here](https://github.com/pyggteam/aerials/blob/master/New_tiles/1855744/1265792/1855744_1265792_offset(0%2C0).jpg)
+
 
 4. Labelled_images
 
 - JSON payload of labelled images
 - images labelled into 3 classes: driveways, edge_of_road, offstreet_parking_bays
+- [see example here](https://github.com/pyggteam/aerials/blob/master/labelled_images/1855744/ann/1855744_1265792.jpg.json)
 
 5. processed_JSON
 
