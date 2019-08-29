@@ -36,13 +36,17 @@ def calculate_midpoint(x1,y1,x2,y2):
     return ((x1+x2)/2, (y1+y2)/2)
 
 #function to do division that avoids division by zero
-def division(numerator, denominator):
+def calculate_angle(y_distance, x_distance):
 
-	if(denominator!=0):
-		return numerator/denominator
-	else:
-		return 0
+	#if divide by zero angle is vertical so 90 degrees
+	try:
+		angle = math.degrees(math.atan(y_distance/x_distance))
 
+	except:
+		angle = 90
+
+	return angle
+	
 
 #function to take json file from path and convert the information inside to a pandas dataframe
 def JSON_to_dataframe(path):
@@ -81,16 +85,10 @@ def JSON_to_dataframe(path):
 	    	midpoint_x = calculate_midpoint(x_start, y_start, x_finish, y_finish)[0]
 	    	midpoint_y = calculate_midpoint(x_start, y_start, x_finish, y_finish)[1]
 
-	    	#angle to horizontal
-	    	y_distance = abs(y_start-y_finish)
-	    	x_distance = abs(x_start-x_finish)
-
-	    	#if divide by zero angle is vertical so 90 degrees
-	    	try:
-	    		angle = math.degrees(math.atan(y_distance/x_distance))
-
-	    	except:
-	    		angle = 90
+	    	#calculate angle
+	    	y_distance = y_start - y_finish
+	    	x_distance = x_start - x_finish
+	    	angle = calculate_angle(y_distance, x_distance)
 
 	    	#add starts and finishes to dataframe
 	    	df2 = {'class_title': objects_list[i]['classTitle'], 'x_start': x_start, 'y_start': y_start, 'x_finish': x_finish, 'y_finish': y_finish, 'distance': distance, 'midpoint_x': midpoint_x, 'midpoint_y': midpoint_y, 'angle_to_horizonal': angle}
@@ -126,7 +124,7 @@ for x in x_files:
 	create_directory('processed_JSON/'+str(x))
 
 	#get all requires files in this folder
-	files = list_of_files(os.getcwd()+'/labelled_images_JSON/'+str(x)+'/ann/')
+	files = list_of_files(os.getcwd()+'/labelled_images/'+str(x)+'/ann/')
 
 	for file in files:
 
@@ -135,7 +133,7 @@ for x in x_files:
 		location = file.split('.', 2)[0]
 		print(location)
 
-		path = os.getcwd()+'/labelled_images_JSON/'+str(x)+'/ann/' + file
+		path = os.getcwd()+'/labelled_images/'+str(x)+'/ann/' + file
 		print(path)
 
 		df = JSON_to_dataframe(path)
