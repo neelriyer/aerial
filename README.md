@@ -8,7 +8,7 @@
 7. run:
 keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  --config config.ini csv train_annotations_new_data.csv labels_new_data.csv --val-annotations val_annotations_new_data.csv
 
-P.S: the resnet50_coco_best_v2.1.0.h5 may need to be [downloaded](https://github.com/fizyr/keras-retinanet/releases). This weights can reduce the time taken for model training (transfer learning).
+P.S: the resnet50_coco_best_v2.1.0.h5 may need to be [downloaded](https://github.com/fizyr/keras-retinanet/releases). These weights can reduce the time taken for model training (transfer learning).
 
 # Datasets
 
