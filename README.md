@@ -1,3 +1,15 @@
+# Retinanet Model instructions
+- clone this repo
+- cd to [retinanet folder](https://github.com/pyggteam/aerials/tree/master/retinanet) 
+- run retinanet_prepare.py
+- run training_test_split.py
+- run delete_row.py
+- cd to [aerial_pedestrian_detection-master folder] (https://github.com/pyggteam/aerials/tree/master/retinanet/aerial_pedestrian_detection-master)
+- run:
+keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  --config config.ini csv train_annotations_new_data.csv labels_new_data.csv --val-annotations val_annotations_new_data.csv
+
+P.S: the resnet50_coco_best_v2.1.0.h5 may need to be [downloaded](https://github.com/fizyr/keras-retinanet/releases)
+
 # Datasets
 
 1. Dataset
@@ -13,7 +25,6 @@
 - Dataset of stitched tiles
 - takes input from the Dataset folder
 - Uses image_stitcher.py
-- 
 
 3. New_tiles
 
