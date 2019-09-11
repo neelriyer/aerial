@@ -1,11 +1,11 @@
 # Retinanet Model instructions
-- clone this repo
-- cd to [retinanet folder](https://github.com/pyggteam/aerials/tree/master/retinanet) 
-- run retinanet_prepare.py
-- run training_test_split.py
-- run delete_row.py
-- cd to [aerial_pedestrian_detection-master folder] (https://github.com/pyggteam/aerials/tree/master/retinanet/aerial_pedestrian_detection-master)
-- run:
+1. clone this repo
+2. cd to [retinanet folder](https://github.com/pyggteam/aerials/tree/master/retinanet) 
+3. run retinanet_prepare.py
+4. run training_test_split.py
+5. run delete_row.py
+6. cd to [aerial_pedestrian_detection-master folder] (https://github.com/pyggteam/aerials/tree/master/retinanet/aerial_pedestrian_detection-master)
+7. run:
 keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  --config config.ini csv train_annotations_new_data.csv labels_new_data.csv --val-annotations val_annotations_new_data.csv
 
 P.S: the resnet50_coco_best_v2.1.0.h5 may need to be [downloaded](https://github.com/fizyr/keras-retinanet/releases)
