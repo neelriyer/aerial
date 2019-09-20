@@ -1,4 +1,4 @@
-# Retinanet Model instructions
+# Retinanet Model instructions (driveway detection)
 1. clone this repo
 2. cd to [retinanet folder](https://github.com/pyggteam/aerials/tree/master/retinanet) 
 3. run retinanet_prepare.py
@@ -9,6 +9,17 @@
 keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  --config config.ini csv train_annotations_new_data.csv labels_new_data.csv --val-annotations val_annotations_new_data.csv
 
 P.S: the resnet50_coco_best_v2.1.0.h5 may need to be [downloaded](https://github.com/fizyr/keras-retinanet/releases). These weights can reduce the time taken for model training (transfer learning).
+
+
+#Tensorflow Model Instructions (offstreet parking detection)
+1. clone this repo
+2. cd to sat_parking_finder folder
+3. see commands.txt in sat_parking_finder folder and see instructions here:
+
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
+
+https://github.com/khoale95/SatImageParkingLotFinder
+
 
 # Datasets
 

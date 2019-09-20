@@ -1,0 +1,71 @@
+1. clone tensorflow/models
+
+2. clone satimagdetection
+
+3. run python setup.py
+
+5. run this
+
+pip install --user Cython
+pip install --user contextlib2
+pip install --user pillow
+pip install --user lxml
+pip install --user jupyter
+pip install --user matplotlib
+
+
+git clone https://github.com/cocodataset/cocoapi.git
+cd cocoapi/PythonAPI
+make
+cp -r pycocotools /Users/Neel/Documents/SPOT/parking_space_detection/sat_parking_finder/models/research/
+
+protoc object_detection/protos/*.proto --python_out=.
+
+python models/research/object_detection/legacy/train.py --logdir=’training’  --train_dir=SatImageParkingLotFinder/training/ --pipeline_config_path=SatImageParkingLotFinder/training/faster_rcnn_resnet101_kitti.config
+
+
+
+
+curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.8.0/protoc-3.8.0-osx-x86_64.zip -o protoc.zip
+sudo unzip -o protoc-3.8.0-osx-x86_64.zip -d /usr/local bin/protoc
+rm -f protoc-3.8.0-osx-x86_64.zip
+
+
+cp -r pycocotools /Users/joe/Documents/parking_space_detection/sat_parking_finder/models/research/
+
+
+
+6. run 
+
+---pipeline.config---
+delete:
+  fine_tune_checkpoint: "/Users/Neel/Documents/SPOT/parking_space_detection/sat_parking_finder/models/research/object_detection/faster_rcnn_resnet101_kitti_2018_01_28/model.ckpt"
+
+also set checkpoint thingo to off
+
+
+-----faster_rcnn.config-----
+delete:
+fine_tune_checkpoint: "/Users/Neel/Documents/SPOT/parking_space_detection/sat_parking_finder/models/research/object_detection/faster_rcnn_resnet101_kitti_2018_01_28/model.ckpt"
+
+also set checkpoint thingo to off
+
+
+7. delete files in training folder: 
+- checkpoint
+- events.out.tfevents.1568324501.Jyothi-Mac-2.modem (etc.)
+
+
+8. run:
+python object_detection/legacy/train.py --log-'training' --train_dir=training/ --pipeline_config_path=training/faster_rcnn_resnet101_kitti.config
+
+
+9.
+
+tensorboard --logdir=/Users/joe/Documents/parking_space_detection/sat_parking_finder/SatImageParkingLotFinder/training
+
+Instructions: 
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
+https://github.com/khoale95/SatImageParkingLotFinder
+
+

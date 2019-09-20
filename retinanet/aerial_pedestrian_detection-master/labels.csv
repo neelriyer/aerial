@@ -1,6 +1,3 @@
-Biker,0
-Car,1
-Bus,2
-Cart,3
-Skater,4
-Pedestrian,5
+edge_of_road,0
+offstreet_parking_bays,1
+Driveway,2

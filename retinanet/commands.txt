@@ -1,3 +1,6 @@
+
+
+
 retinanet-train --weights resnet50_coco_best_v2.1.0.h5 \
 --batch-size 4 --steps 4001 --epochs 20 \
 --snapshot-path snapshots --tensorboard-dir tensorboard \
@@ -12,6 +15,8 @@ keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  -
 
 
 
-keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  --config config.ini csv train_annotations_new_data.csv labels_new_data.csv --val-annotations val_annotations_new_data.csv
+keras_retinanet/bin/train.py --weights snapshots/resnet50_coco_best_v2.1.0.h5  --config config.ini csv train_annotations_new_data.csv labels.csv --val-annotations val_annotations_new_data.csv --tensorboard-dir '/Users/joe/Documents/retinanet/aerial_pedestrian_detection-master/logs'
+
+
 
 

@@ -104,6 +104,7 @@ def _open_for_csv(path):
     This is different for python2 it means with mode 'rb',
     for python3 this means 'r' with "universal newlines".
     """
+    print (sys.version_info[0])
     if sys.version_info[0] < 3:
         return open(path, 'rb')
     else:

@@ -132,11 +132,8 @@ def JSON_to_dataframe(path):
 #replace directory is if already exists
 def create_directory(directory_name):
 	name = os.getcwd()+'/'+str(directory_name)
-	try:
-		os.makedirs(name)    
-	except FileExistsError:
-		shutil.rmtree(name) 
-		os.makedirs(name)  
+	os.makedirs(name)    
+
 
 
 #create new directory
